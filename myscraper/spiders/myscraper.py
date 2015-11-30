@@ -17,4 +17,20 @@ class MyScraper(Spider):
 
 
     def parse(self, response):
-        pass
+        # Find a list of div which contains a person (use CSS)
+        persons_el = # TO FILL
+
+        # Browse the list
+        for person_el in persons_el:
+
+            # Create a new item
+            item = PersonItem()
+
+            # Extract the name of the person (use CSS + XPath)
+            # TO FILL
+
+            # Extract the ticket fare of the person (use CSS + XPath)
+            # TO FILL
+
+            # Export the item
+            yield item
