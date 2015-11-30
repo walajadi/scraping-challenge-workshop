@@ -11,14 +11,14 @@ class MyScraper(Spider):
     def start_requests(self):
         # First request
         yield Request(
-            url=u'FILL_WITH_URL',
+            url=u'https://scraping-challenge.herokuapp.com/onepage',
             callback=self.parse,
         )
 
 
     def parse(self, response):
         # Find a list of div which contains a person (use CSS)
-        persons_el = # TO FILL
+        persons_el = response.css('.person')
 
         # Browse the list
         for person_el in persons_el:
@@ -27,10 +27,14 @@ class MyScraper(Spider):
             item = PersonItem()
 
             # Extract the name of the person (use CSS + XPath)
-            # TO FILL
+            name_el = person_el.css('.name').xpath('text()').extract()
+            if len(name_el) > 0:
+                item['name'] = name_el[0]
 
             # Extract the ticket fare of the person (use CSS + XPath)
-            # TO FILL
+            ticket_fare_el = person_el.css('.ticket_fare').xpath('text()').extract()
+            if len(ticket_fare_el) > 0:
+                item['ticket_fare'] = ticket_fare_el[0]
 
             # Export the item
             yield item
