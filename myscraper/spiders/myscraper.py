@@ -12,6 +12,11 @@ class MyScraper(Spider):
         # First request
 
         # Use a loop
+        for i in range(0, 10):
+            yield Request(
+                url=u'https://scraping-challenge.herokuapp.com/pagination?page={0}'.format(i),
+                callback=self.parse,
+            )
 
 
     def parse(self, response):
