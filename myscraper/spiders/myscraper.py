@@ -14,8 +14,12 @@ class MyScraper(Spider):
         # 1/ Use a FormRequest instead of a Request
         # 2/ Pass email and password with formdata
         # 3/ Find the good URL to post data !
-        yield Request(
-            url=u'https://scraping-challenge.herokuapp.com/login',
+        yield FormRequest(
+            formdata={
+                'email': 'john@doe.com',
+                'password': 'johnjohn',
+            },
+            url=u'https://scraping-challenge.herokuapp.com/login/auth',
             callback=self.parse,
         )
 
@@ -42,3 +46,5 @@ class MyScraper(Spider):
 
             # Export the item
             yield item
+
+
